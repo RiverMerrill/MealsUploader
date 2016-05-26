@@ -1,0 +1,53 @@
+<html ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Company Upload</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="upload-coupon-page" ng-controller="MainController">
+    <h1>Upload a Company</h1>
+    <form id="form">
+        <p>Select a location:</p>
+        <select ng-model="company.location">
+            <option value="Eagle">Eagle</option>
+            <option value="N. Meridian">N. Meridian</option>
+            <option value="S. Meridian">S. Meridian</option>
+        </select>
+        <br>
+        <p>Company Name:</p>
+        <md-input-container>
+          <label>Company</label>
+          <input ng-model="company.title" />
+        </md-input-container>
+        <br>
+        <p>Description:</p>
+        <md-input-container>
+            <label>Description</label>
+            <textarea ng-model="company.description" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+        <br>
+        <p>Company Image:</p>
+        <input style="display: block; margin-left: auto; margin-right: auto" onchange="previewFile()" type="file" /><br>
+        <img src="" alt="Image Preview" style="height: 200px"/>
+        <br>
+        <md-button class="button-raised" ng-click="addCompany(company)">Upload</md-button>
+    </form>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

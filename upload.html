@@ -1,0 +1,60 @@
+<html ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Uploader</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="upload-coupon-page" ng-controller="MainController">
+    <h1>Upload a Coupon</h1>
+    <form id="form">
+        <p>Select a location:</p>
+        <select ng-model="coupon.location">
+            <option disabled selected>Location</option>
+            <option value="eagle">Eagle</option>
+            <option value="nMeridian">N. Meridian</option>
+            <option value="sMeridian">S. Meridian</option>
+        </select>
+        <br>
+        <p>Select a company:</p>
+        <select ng-model="coupon.company">
+            <option value="{{company.title}}" ng-repeat="company in companies">{{company.title}}</option>
+        </select>
+        <br>
+        <p>Name your coupon:</p>
+        <md-input-container>
+            <label>Coupon Title</label>
+            <input ng-model="coupon.title" />
+        </md-input-container>
+        <br>
+        <md-input-container>
+            <label>Description</label>
+            <textarea ng-model="coupon.description" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+        <br>
+        <p>Coupon Expiration</p>
+        <md-datepicker ng-model="coupon.expiration" md-placeholder="Date"></md-datepicker>
+        <br>
+        <p>Coupon Image:</p>
+        <input style="display: block; margin-left: auto; margin-right: auto" onchange="previewFile()" type="file" /><br>
+        <img src="" alt="Image Preview" style="height: 200px"/>
+        <md-button class="button-raised" ng-click="addItem(coupon)">Upload</md-button>
+    </form>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
