@@ -12,6 +12,16 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia) {
    var ref2 = new Firebase('https://mealsdealssteals.firebaseio.com/companies')
    $scope.companies = $firebaseArray(ref2);
    console.log($scope.companies);
+   
+   function chunk(arr, size) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; i += size) {
+            newArr.push(arr.slice(i, i + size));
+        }
+        return newArr;
+    }
+   
+   
    $scope.addItem = function(item) {
       var temp = new Firebase('https://mealsdealssteals.firebaseio.com/coupons/');
       var db = $firebaseArray(temp);
@@ -22,6 +32,9 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia) {
       console.log(item);
       var temp = new Firebase('https://mealsdealssteals.firebaseio.com/companies');
       var db = $firebaseArray(temp);
+      var temp2 = new Firebase('https://mealsdealssteals.firebaseio.com/coupons/');
+      var db2 = $firebaseArray(temp2);
+      db2.$add({company: item.title, skip: true})
       item.image = itemFile;
       db.$add(item);
    }

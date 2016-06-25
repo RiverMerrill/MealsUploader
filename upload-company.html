@@ -10,21 +10,36 @@
 </head>
 
 <body class="upload-coupon-page" ng-controller="MainController">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Meals Deals & Steals</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="upload.html">Coupon Upload</a></li>
+                <li class="active"><a href="upload-company.html">Company Upload</a></li>
+            </ul>
+        </div>
+    </nav>
     <h1>Upload a Company</h1>
     <form id="form">
-        <p>Select a location:</p>
-        <select ng-model="company.location">
-            <option value="Eagle">Eagle</option>
-            <option value="N. Meridian">N. Meridian</option>
-            <option value="S. Meridian">S. Meridian</option>
-        </select>
         <br>
         <p>Company Name:</p>
         <md-input-container>
-          <label>Company</label>
+          <label>Company Name</label>
           <input ng-model="company.title" />
         </md-input-container>
         <br>
+        <p>Company Category</p>
+        <select ng-model="company.category">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="food">Food</option>
+            <option value="shopping">Shopping</option>
+            <option value="homeServices">Home Services</option>
+            <option value="events">Events & Attractions</option>
+        </select>
         <p>Description:</p>
         <md-input-container>
             <label>Description</label>
@@ -35,7 +50,7 @@
         <input style="display: block; margin-left: auto; margin-right: auto" onchange="previewFile()" type="file" /><br>
         <img src="" alt="Image Preview" style="height: 200px"/>
         <br>
-        <md-button class="button-raised" ng-click="addCompany(company)">Upload</md-button>
+        <md-button class="button-raised" ng-click="addCompany(company)" href="index.html">Upload</md-button>
     </form>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>

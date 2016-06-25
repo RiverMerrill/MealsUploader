@@ -4,18 +4,46 @@
     <meta charset="UTF-8">
     <title>View Items</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="container" ng-controller="MainController">
-    <br>
-    <div ng-repeat="item in data track by $index" class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">{{item.title}} <span ng-click="removeItem($index)" class="pull-right">x</span></div>
-            <div class="panel-body">
-                {{item.description}}
+<body ng-controller="MainController">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Meals Deals & Steals</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="upload.html">Coupon Upload</a></li>
+                <li><a href="upload-company.html">Company Upload</a></li>
+            </ul>
+        </div>
+    </nav>
+    <md-input-container class="search">
+        <label>Search</label>
+        <input ng-model="search" />
+    </md-input-container>
+    <label class="sorter" for="sorter">Sort By:</label>
+    <select name="sorter" ng-model="sorter" class="sorter">
+        <option disabled selected value> -- select an option -- </option>
+        <option value="company">Company</option>
+        <option value="title" selected="selected">Title</option>
+    </select>
+    <br/>
+    <br/>
+    <div class="container">
+        <div ng-repeat="item in data | orderBy: sorter | filter: search track by $index" ng-hide="item.skip" class="col-md-4 items">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>{{item.title}}</strong> <span ng-click="removeItem($index)" class="pull-right">x</span><br/>
+                    <p>{{item.company}}</p>
+                </div>
+                <div class="panel-body">
+                    {{item.description}}
+                </div>
             </div>
         </div>
     </div>
@@ -27,7 +55,7 @@
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
     <script src="bower_components/angular-material/angular-material.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
     <script src="app.js"></script>
