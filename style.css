@@ -2,7 +2,7 @@
   text-align: center;
 }
 .items{
-  height: 30%;
+  height: 35%;
 }
 .sorter{
   float: left;
@@ -11,4 +11,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.edit-dialog{
+  text-align: center;
 }

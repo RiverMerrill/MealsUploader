@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "bootstrap-material-design": "^0.5.9",
-    "angular-material": "^1.0.8"
+    "angular-material": "^1.0.8",
+    "ng-dialog": "^0.6.4"
   }
 }

@@ -1,0 +1,34 @@
+<div class="edit-dialog">
+    <h1>Edit Coupon</h1>
+    <p>Coupon Company:</p>
+    <select ng-model="editItem.company">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="{{company.title}}" ng-repeat="company in companies">{{company.title}}</option>
+    </select>
+    <br/>
+    <br/>
+    <p>Coupon Title:</p>
+    <md-input-container>
+        <label>Title</label>
+        <input ng-model="editItem.title" />
+    </md-input-container>
+    <br>
+    <p>Coupon Type:</p>
+    <select ng-model="editItem.oneTime">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="true">One Time Use</option>
+            <option value="false">Unlimited</option>
+        </select>
+    <br/>
+    <br/>
+    <p>Coupon Description:</p>
+    <md-input-container>
+        <label>Description</label>
+        <textarea ng-model="editItem.description" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+    <br>
+    <p>Coupon Expiration</p>
+    <md-datepicker ng-model="editItem.expiration" md-placeholder="Date"></md-datepicker>
+    <br/>
+    <md-button class="button-raised" ng-click="updateItem()">Update</md-button>
+</div>
