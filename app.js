@@ -18,9 +18,12 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
     }
     $scope.editCoupon = function (item) {
         ngDialog.open({ template: 'popupTmpl.html', className: 'ngdialog-theme-default', controller: 'MainController', scope: $scope });
-        if (item.image[0] !== 'h') {
-            item.image = 'data:image/jpeg;base64,' + item.image;
+        $scope.editItem = item;
+        if (item.image[0] !== 'h' && item.image[0] !== 'd' ) {
+            console.log(item.image[0]);
+            item.image = 'data:image/jpeg;base64,' + item.image;           
         }
+        console.log($scope.editItem.$id);
         $scope.updateItem = function () {
             // var storage = firebase.storage();
             // var storageRef = storage.ref('couponImages/' + item.title + '.jpeg');
@@ -28,19 +31,20 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
                 // storageRef.getDownloadURL().then(function (url) {
                     // console.log(url);
                     // $scope.editItem.image = url;
-                    firebase.database().ref('coupons/' + $scope.editItem.$id).update({
+                    firebase.database().ref('coupons/' + uuid()).set({
                         company: $scope.editItem.company,
                         description: $scope.editItem.description,
                         oneTime: $scope.editItem.oneTime,
-                        title: $scope.editItem.title
+                        title: $scope.editItem.title,
+                        image: $scope.editItem.image
                     });
+                    firebase.database().ref('coupons/' + $scope.editItem.$id).remove();
+                    // firebase.database().ref('coupons/' +)
                     // window.location.href = "index.html"
                 // })
             // })
             ngDialog.close();
         }
-        console.log(JSON.stringify(item));
-        $scope.editItem = item;
         console.log(item);
     };
     $scope.data = {};
