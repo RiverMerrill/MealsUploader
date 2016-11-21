@@ -4,6 +4,10 @@ var app = angular.module('app', ['firebase', 'ngMaterial', 'ngDialog']);
 app.controller('MainController', MainController);
 
 function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
+    if(!localStorage.getItem('resetCache')){
+        localStorage.setItem('resetCache', 'true');
+        window.location.reload()
+    }
     function uuid() {
         var d = new Date().getTime();
         if (window.performance && typeof window.performance.now === "function") {
