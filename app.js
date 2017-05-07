@@ -3,7 +3,8 @@ var app = angular.module('app', ['firebase', 'ngMaterial', 'ngDialog']);
 
 app.controller('MainController', MainController);
 
-function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
+function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog, $timeout) {
+    $scope.loading = true;
     if(!localStorage.getItem('resetCache')){
         localStorage.setItem('resetCache', 'true');
         window.location.reload()
@@ -51,20 +52,16 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
         }
         console.log(item);
     };
+    
+    
     $scope.data = {};
-    // var storage = firebase.storage();
-    // var storageRef = storage.ref('images/image1.jpg')
-    // storageRef.child('images/image1.jpg').getDownloadURL().then(function (url) {
-    //     console.log(url)
-    // }).catch(function (error) {
-    //     // Handle any errors
-    // });
     $scope.coupon = {};
     $scope.company = {};
     $scope.data = localStorage.getItem('coupons');
     // $scope.companies = localStorage.getItem('companies');
     var ref = new Firebase('https://mealsdealssteals.firebaseio.com/coupons')
     $scope.data = $firebaseArray(ref);
+    $scope.data.$loaded().then(() => $scope.loading = false);
     var ref2 = new Firebase('https://mealsdealssteals.firebaseio.com/companies1')
     $scope.companies = $firebaseArray(ref2);
     console.log($scope.companies);
@@ -110,28 +107,6 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
             })
         })
     }
-    $scope.addCompany = function (item) {
-        var storage = firebase.storage();
-        var storageRef = storage.ref('images/' + item.title + '.jpeg');
-        storageRef.putString(itemFile, 'base64').then(function (snapshot) {
-            console.log('success')
-            storageRef.getDownloadURL().then(function (url) {
-                console.log(url);
-                // firebase.database().ref('companies1/' + uuid()).set({ company: item.title, skip: true })
-                item.image = url;
-                firebase.database().ref('companies1/' + uuid()).set(item)
-                // window.location.href = "index.html"
-            })
-        })
-        // console.log(item);
-        // var temp = new Firebase('https://mealsdealssteals.firebaseio.com/companies');
-        // var db = $firebaseArray(temp);
-        // var temp2 = new Firebase('https://mealsdealssteals.firebaseio.com/coupons/');
-        // var db2 = $firebaseArray(temp2);
-        // db2.$add({ company: item.title, skip: true })
-        // item.image = itemFile;
-        // db.$add(item);
-    }
     $scope.removeItem = function (index, item) {
         firebase.database().ref('coupons/' + item.$id).remove()
         console.log(item);
@@ -157,15 +132,6 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
             });
     };
 }
-
-
-
-
-
-
-
-
-
 
 
 
