@@ -4,6 +4,7 @@ var app = angular.module('app', ['firebase', 'ngMaterial', 'ngDialog']);
 app.controller('MainController', MainController);
 
 function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
+    $scope.emails = emails;
     if(!localStorage.getItem('resetCache')){
         localStorage.setItem('resetCache', 'true');
         window.location.reload()
@@ -25,7 +26,7 @@ function MainController($scope, $firebaseArray, $mdDialog, $mdMedia, ngDialog) {
         $scope.editItem = item;
         if (item.image[0] !== 'h' && item.image[0] !== 'd' ) {
             console.log(item.image[0]);
-            item.image = 'data:image/jpeg;base64,' + item.image;           
+            item.image = 'data:image/jpeg;base64,' + item.image;
         }
         console.log($scope.editItem.$id);
         $scope.updateItem = function () {
