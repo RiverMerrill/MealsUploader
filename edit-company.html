@@ -1,17 +1,16 @@
 <html ng-app="app">
-
 <head>
     <meta charset="UTF-8">
-    <title>View Items</title>
+    <title>Edit Company</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css"/>
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
     <link rel="stylesheet" href="style.css" />
+    <script src="https://use.fontawesome.com/a75d13c8f9.js"></script>
 </head>
-
-<body ng-controller="MainController">
+<body ng-controller="EditCompanyController">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,47 +21,66 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="upload.html">Coupon Upload</a></li>
                 <li><a href="upload-company.html">Company Upload</a></li>
-                <li class="active"><a href="manage-companies.html">Manage Companies</a></li>
+                <li><a href="manage-companies.html">Manage Companies</a></li>
             </ul>
         </div>
     </nav>
-    <md-input-container class="search">
-        <label>Search</label>
-        <input ng-model="search" />
-    </md-input-container>
-    <label class="sorter" for="sorter">Sort By:</label>
-    <select name="sorter" ng-model="sorter" class="sorter">
-        <option disabled selected value> -- select an option -- </option>
-        <option value="title" selected="selected">Title</option>
-    </select>
-    <br/>
-    <!--<p style="display: inline-block">Wait until loaded to press ==></p> <button ng-click="saveLocal()">Save Database Locally</button>-->
-    <br/>
-    <br/>
-    <img class="center-block" ng-show="loading" src="spinner.gif"/>
-    <div class="container">
-        <div ng-repeat="item in companies | orderBy: sorter | filter: search track by $index" ng-hide="item.skip" class="col-md-4 items">
-            <div ng-hide="item.delete" class="panel panel-default">
-                <div class="panel-heading"><strong>{{item.title}}</strong> <span ng-click="item.delete = true" class="pull-right">x</span><br/>
-                </div>
-                <div class="panel-body">
-                    {{item.description}}
-                    <a style="color: grey" class="pull-right" href="/edit-company.html?id={{item.$id}}">Edit</a>
-                </div>
-            </div>
-            <div ng-show="item.delete" class="panel panel-default">
-                <div class="panel-heading">
-                    <p>Alert!</p>
-                </div>
-                <div class="panel-body"> 
-                    <p>Are you sure you want to delete this item from the database?</p>
-                    <md-button class="md-raised md-warn" ng-click="removeCompany($index, item)">Delete</md-button>
-                    <md-button class="md-raised" ng-click="item.delete = false">Cancel</md-button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <br/><br/><br/>
+    <form class="edit-company-page">
+        <h1>Edit Company</h1>
+        <p>Company Name:</p>
+        <md-input-container>
+            <label>Title</label>
+            <input ng-model="editItem.title" />
+        </md-input-container>
+        <br>
+        <p>Company Category:</p>
+        <select ng-model="editItem.category">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="food">Food</option>
+            <option value="shopping">Shopping</option>
+            <option value="homeServices">Home Services</option>
+            <option value="events">Events & Attractions</option>
+        </select>
+        <br>
+        <p>Company Locations:</p>
+            <md-input-container>
+                <label>Company Location 1</label>
+                <input placeholder="" id="company-loc1"/>
+            </md-input-container>
+            <br/>
+            <md-input-container>
+                <label>Company Location 2</label>
+                <input placeholder="" id="company-loc2"/>
+            </md-input-container>
+            <br/>
+            <md-input-container>
+                <label>Company Location 3</label>
+                <input placeholder="" id="company-loc3"/>
+            </md-input-container>
+            <br/>
+            <md-input-container>
+                <label>Company Location 4</label>
+                <input placeholder="" id="company-loc4"/>
+            </md-input-container>
+            <br/>
+            <md-input-container>
+                <label>Company Location 5</label>
+                <input placeholder="" id="company-loc5"/>
+            </md-input-container>
+            <br/>
+        <p>Description:</p>
+        <md-input-container>
+            <label>Description</label>
+            <textarea ng-model="editItem.description" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+        <br/>
+        <md-button class="md-raised md-primary" ng-click="updateCompany()">Update</md-button>
+    </form>
+    
+    
+    
+    
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
@@ -88,6 +106,6 @@
       firebase.initializeApp(config);
     </script>
     <script src="app.js"></script>
+    <script type="text/javascript" src="edit-company.controller.js"></script>
 </body>
-
 </html>

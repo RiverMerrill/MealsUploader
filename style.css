@@ -1,3 +1,9 @@
+body{
+  background-color: white !important;
+}
+form{
+  background-color: white !important;
+}
 .upload-coupon-page{
   text-align: center;
 }
@@ -12,6 +18,9 @@
   margin-left: auto;
   margin-right: auto;
 }
-.edit-dialog{
+.edit-company-page{
   text-align: center;
+}
+#company-loc{
+  width: 150%;
 }

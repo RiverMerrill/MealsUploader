@@ -1,0 +1,50 @@
+<div class="edit-dialog">
+    <h1>Edit Company</h1>
+    <p>Company Name:</p>
+    <md-input-container>
+        <label>Title</label>
+        <input ng-model="editItem.title" />
+    </md-input-container>
+    <br>
+    <p>Company Category:</p>
+    <select ng-model="editItem.category">
+        <option disabled selected value> -- select an option -- </option>
+        <option value="food">Food</option>
+        <option value="shopping">Shopping</option>
+        <option value="homeServices">Home Services</option>
+        <option value="events">Events & Attractions</option>
+    </select>
+    <br>
+    <p>Company Locations:</p>
+        <md-input-container>
+            <label>Company Location 1</label>
+            <input placeholder="" id="company-loc1"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 2</label>
+            <input placeholder="" id="company-loc2"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 3</label>
+            <input placeholder="" id="company-loc3"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 4</label>
+            <input placeholder="" id="company-loc4"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 5</label>
+            <input placeholder="" id="company-loc5"/>
+        </md-input-container>
+        <br/>
+    <p>Description:</p>
+    <md-input-container>
+        <label>Description</label>
+        <textarea ng-model="company.description" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+    <md-button class="button-raised" ng-click="updateCompany()">Update</md-button>
+</div>

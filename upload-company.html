@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="upload-coupon-page" ng-controller="MainController">
+<body class="upload-coupon-page" ng-controller="UploadCompanyController">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,6 +41,33 @@
             <option value="homeServices">Home Services</option>
             <option value="events">Events & Attractions</option>
         </select>
+        <br/><br/>
+        <p>Company Locations:</p>
+        <md-input-container>
+            <label>Company Location 1</label>
+            <input placeholder="" id="company-loc1"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 2</label>
+            <input placeholder="" id="company-loc2"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 3</label>
+            <input placeholder="" id="company-loc3"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 4</label>
+            <input placeholder="" id="company-loc4"/>
+        </md-input-container>
+        <br/>
+        <md-input-container>
+            <label>Company Location 5</label>
+            <input placeholder="" id="company-loc5"/>
+        </md-input-container>
+        <br/>
         <p>Description:</p>
         <md-input-container>
             <label>Description</label>
@@ -51,7 +78,7 @@
         <input style="display: block; margin-left: auto; margin-right: auto" onchange="previewFile()" type="file" /><br>
         <img src="" alt="Image Preview" style="height: 200px" />
         <br>
-        <md-button class="button-raised" ng-click="addCompany(company)">Upload</md-button>
+        <md-button class="md-raised md-primary" ng-click="addCompany(company)">Upload</md-button>
     </form>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -63,7 +90,7 @@
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
-
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRDfSJHD02Jdt6XmIsxPRBcpeP2-F8sEI&libraries=places"></script>
     <script>
   // Initialize Firebase
   var config = {
@@ -75,7 +102,8 @@
   };
   firebase.initializeApp(config);
 </script>
-    <script src="app.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script src="upload-company.controller.js"></script>
 </body>
 
 </html>
