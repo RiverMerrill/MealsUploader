@@ -56,7 +56,7 @@
                 <div class="panel-heading">
                     <p>Alert!</p>
                 </div>
-                <div class="panel-body"> 
+                <div class="panel-body">
                     <p>Are you sure you want to delete this item from the database?</p>
                     <md-button class="md-raised md-warn" ng-click="removeItem($index, item)">Delete</md-button>
                     <md-button class="md-raised" ng-click="item.delete = false">Cancel</md-button>
@@ -89,6 +89,7 @@
       };
       firebase.initializeApp(config);
     </script>
+    <script src="emails.js" charset="utf-8"></script>
     <script src="app.js"></script>
 
 </body>
