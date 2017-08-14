@@ -18,11 +18,10 @@
                         console.log(url);
                         // firebase.database().ref('companies1/' + uuid()).set({ company: item.title, skip: true })
                         item.image = url;
-                        item.locations = locations; 
+                        item.locations = locations;
                         firebase.database().ref('companies1/' + uuid()).set(item)
                     })
                 })
-                $timeout(function(){window.location.href = "index.html"}, 2000)
             }
             for(var i = 0; i <= 4; i++){
                 (function(){
@@ -39,8 +38,8 @@
                 $scope.locationAutocompletes.push(obj);
                 })()
             }
-            
-            
+
+
         function uuid() {
         var d = new Date().getTime();
         if (window.performance && typeof window.performance.now === "function") {
